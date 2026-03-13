@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens: Night Sky & Soft Pastels ─── */
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Sky blue palette */
+    --background: 0.97 0.012 220;
+    --foreground: 0.18 0.06 255;
+
+    --card: 0.99 0.004 220;
+    --card-foreground: 0.18 0.06 255;
+
+    --popover: 0.99 0.004 220;
+    --popover-foreground: 0.18 0.06 255;
+
+    /* Primary = rich navy blue */
+    --primary: 0.22 0.09 255;
+    --primary-foreground: 0.98 0.004 220;
+
+    /* Secondary = sky blue */
+    --secondary: 0.82 0.06 220;
+    --secondary-foreground: 0.15 0.08 255;
+
+    /* Muted = soft blue-gray */
+    --muted: 0.93 0.018 220;
+    --muted-foreground: 0.45 0.05 240;
+
+    /* Accent = gold */
+    --accent: 0.78 0.12 75;
+    --accent-foreground: 0.15 0.06 255;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.85 0.03 220;
+    --input: 0.88 0.025 220;
+    --ring: 0.55 0.08 255;
+
+    --chart-1: 0.64 0.12 75;
+    --chart-2: 0.52 0.1 255;
+    --chart-3: 0.72 0.08 220;
+    --chart-4: 0.58 0.14 290;
+    --chart-5: 0.82 0.09 190;
+
+    --sidebar: 0.18 0.06 255;
+    --sidebar-foreground: 0.95 0.01 220;
+    --sidebar-primary: 0.64 0.12 75;
+    --sidebar-primary-foreground: 0.15 0.06 255;
+    --sidebar-accent: 0.28 0.08 255;
+    --sidebar-accent-foreground: 0.95 0.01 220;
+    --sidebar-border: 0.3 0.07 255;
+    --sidebar-ring: 0.55 0.08 255;
+  }
+
+  .dark {
+    --background: 0.12 0.04 255;
+    --foreground: 0.95 0.008 220;
+    --card: 0.16 0.05 255;
+    --card-foreground: 0.95 0.008 220;
+    --popover: 0.18 0.05 255;
+    --popover-foreground: 0.95 0.008 220;
+    --primary: 0.75 0.1 75;
+    --primary-foreground: 0.12 0.06 255;
+    --secondary: 0.22 0.07 255;
+    --secondary-foreground: 0.9 0.01 220;
+    --muted: 0.22 0.05 255;
+    --muted-foreground: 0.6 0.04 240;
+    --accent: 0.78 0.12 75;
+    --accent-foreground: 0.12 0.06 255;
+    --destructive: 0.704 0.191 22.216;
+    --destructive-foreground: 0.12 0 0;
+    --border: 1 0 0 / 10%;
+    --input: 1 0 0 / 15%;
+    --ring: 0.55 0.08 255;
+    --chart-1: 0.75 0.12 75;
+    --chart-2: 0.6 0.12 255;
+    --chart-3: 0.72 0.08 220;
+    --chart-4: 0.58 0.14 290;
+    --chart-5: 0.82 0.09 190;
+    --sidebar: 0.12 0.05 255;
+    --sidebar-foreground: 0.95 0.008 220;
+    --sidebar-primary: 0.75 0.12 75;
+    --sidebar-primary-foreground: 0.12 0.06 255;
+    --sidebar-accent: 0.22 0.06 255;
+    --sidebar-accent-foreground: 0.95 0.008 220;
+    --sidebar-border: 1 0 0 / 10%;
+    --sidebar-ring: 0.55 0.08 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ─── Keyframe Animations ─── */
+@keyframes sparkle-float {
+  0% {
+    transform: translateY(0) translateX(0) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-20px) translateX(var(--drift, 10px)) scale(1) rotate(45deg);
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120px) translateX(calc(var(--drift, 10px) * 3)) scale(0.3) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.9), 0 0 40px rgba(212, 175, 55, 0.4);
+  }
+}
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes wax-seal-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 1)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.5));
+  }
+}
+
+@keyframes star-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-80px) translateX(var(--star-drift, 20px)); opacity: 0; }
+}
+
+/* ─── Animation Utility Classes ─── */
+.vinyl-spinning {
+  animation: vinyl-spin 2s linear infinite;
+}
+
+.vinyl-paused {
+  animation-play-state: paused;
+}
+
+.float-anim {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.wax-glow {
+  animation: wax-seal-glow 2.5s ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.7s ease-out forwards;
+}
+
+/* Page transition */
+.page-enter {
+  animation: slide-in-right 0.4s ease-in-out forwards;
+}
+
+.page-exit {
+  animation: slide-out-left 0.4s ease-in-out forwards;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+
+/* Vintage paper */
+.vintage-paper {
+  background-color: #f5ede0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(232,213,183,0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(232,213,183,0.4) 0%, transparent 50%);
+  box-shadow: 0 4px 24px rgba(13, 27, 94, 0.12);
+}
+
+/* Star sparkle element */
+.star-particle {
+  position: absolute;
+  pointer-events: none;
+  color: #d4af37;
+  animation: star-drift var(--dur, 4s) ease-in var(--delay, 0s) infinite;
+  font-size: var(--sz, 12px);
+  --star-drift: var(--dx, 15px);
+  opacity: 0;
+}
+
+/* Night sky background */
+.night-sky {
+  background: radial-gradient(ellipse at 50% 0%, #1a2060 0%, #07091e 50%, #020310 100%);
+}
+
+/* Sky paper background */
+.sky-bg {
+  background: linear-gradient(160deg, #e8f4fd 0%, #cde7f5 40%, #bcd8f0 100%);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(13, 27, 94, 0.2); border-radius: 3px; }
+
+/* ─── Envelope Opening Animations ─── */
+@keyframes flap-open {
+  0% {
+    transform: perspective(900px) rotateX(0deg);
+  }
+  100% {
+    transform: perspective(900px) rotateX(-178deg);
+  }
+}
+
+@keyframes paper-slide-up {
+  0% {
+    transform: translateY(60%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.envelope-flap-opening {
+  animation: flap-open 1.8s ease-in-out forwards;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+}
+
+.paper-reveal {
+  animation: paper-slide-up 1.5s ease-out forwards;
+  transform: translateY(60%);
+  opacity: 0;
+}
